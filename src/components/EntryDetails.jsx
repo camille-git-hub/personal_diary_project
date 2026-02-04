@@ -4,19 +4,15 @@ const EntryDetails = () => {
     <div>
         <label>
           Title:
-          <input type="text" name="title" />
         </label>
         <label>
-            Date:
-            <input type="date" name="date" />   
+            Date: 
         </label>
         <label>
             Picture:
-            <input type="file" name="picture" />
         </label>
         <label>
           Content:
-          <textarea name="content"></textarea>
         </label>
     </div>
     );
