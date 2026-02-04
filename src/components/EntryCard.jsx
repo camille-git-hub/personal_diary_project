@@ -1,11 +1,11 @@
 import EntryDetails from "./EntryDetails";
 
-const EntryCard = () => {
+const EntryCard = ({entry}) => {
 
     return (
     <div>
-        <EntryDetails/>
+        <EntryDetails entry={entry}/>
     </div>
 )};
 
-export default EntryCard;   
+export default EntryCard;
