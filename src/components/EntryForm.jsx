@@ -2,7 +2,7 @@ import { useState } from "react";
 import { tryAddToDiary } from "../util/storage.js";
 import ErrorMessage from "./ErrorMessage"
 
-const EntryForm = ({ handleSubmit, onClose}) => {
+const EntryForm = ({ onSubmit, onClose}) => {
 
   const [error, setError] = useState(null);
 
@@ -59,10 +59,11 @@ const EntryForm = ({ handleSubmit, onClose}) => {
       tryAddToDiary(newEntry);
     } catch (diaryError) {
       setError(diaryError.message)
+      return;
     }
 
     // finalising
-    handleSubmit(newEntry) // no need to pass event
+    onSubmit(newEntry) // no need to pass event
 
   }
 
