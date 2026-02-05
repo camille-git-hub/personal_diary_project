@@ -4,14 +4,15 @@ import EntryList from "./components/EntryList"
 import ViewEntryModal from "./components/ViewEntryModal"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
-
-import { useState } from 'react';
 import { loadDiaryEntries, saveDiaryEntries } from "./util/storage";
+import { useEffect } from "react";
 
 function App() {
   const [isAddEntryModalOpen, setAddEntryModalOpen] = useState(false);
   const [isViewEntryModalOpen, setViewEntryModalOpen] = useState(false);
   const [selectedEntry, setSelectedEntry] = useState(null);
+  const [entries, setEntries] = useState(loadDiaryEntries());
+
 
   useEffect(() => {
    saveDiaryEntries(entries); 
@@ -31,11 +32,9 @@ function App() {
     setAddEntryModalOpen(false);
   };
 
-  const [entries, setEntries] = useState(loadDiaryEntries());
-  const [addEntry, setAddEntry]=useState(false);
-
-
-  //setAddEntry(true);
+  const openAddEntryModal = () => {
+    setAddEntryModalOpen(true);
+  };
 
   const handleNewEntry = (newEntry) => {
     const entry= {
@@ -49,12 +48,12 @@ function App() {
   return (
     <>
       <Header onAddClick={openAddEntryModal} />
-    <main>
-      <EntryList onClick={openViewEntryModal} entries={entries} /> {/*This displays the list of EntryCard and opens ViewEntryModal when clicked, which displays EntryDetails*/}
-    </main>
-    <Footer />
-    <AddEntryModal isOpen={isAddEntryModalOpen} onClose={closeAddEntryModal} onAddEntry={handleNewEntry}/>
-    <ViewEntryModal isOpen={isViewEntryModalOpen} onClose={closeViewEntryModal} entry={selectedEntry} /> 
+      <main>
+        <EntryList onClick={openViewEntryModal} entries={entries} /> {/*This displays the list of EntryCard and opens ViewEntryModal when clicked, which displays EntryDetails*/}
+      </main>
+      <Footer />
+        <AddEntryModal isOpen={isAddEntryModalOpen} onClose={closeAddEntryModal} onAddEntry={handleNewEntry}/>
+        <ViewEntryModal isOpen={isViewEntryModalOpen} onClose={closeViewEntryModal} entry={selectedEntry} /> 
     </>
 
   );

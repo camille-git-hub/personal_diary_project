@@ -1,6 +1,8 @@
 import EntryDetails from "./EntryDetails.jsx";
 
-const ViewEntryModal = ({ onClose, children }) => {
+const ViewEntryModal = ({ isOpen, onClose, children }) => {
+
+    if (!isOpen) return null;
 
     return (
     <div
@@ -17,8 +19,9 @@ const ViewEntryModal = ({ onClose, children }) => {
             >
                 Close
             </button>
-            {children}
+           
         </div>
+        <EntryDetails entry={children} />
     </div>
     );
 };
