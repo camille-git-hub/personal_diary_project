@@ -1,4 +1,4 @@
-import AddEntryButton from "./components/AddEntryButton"
+import { useState } from "react"
 import AddEntryModal from "./components/AddEntryModal"
 import EntryList from "./components/EntryList"
 import ViewEntryModal from "./components/ViewEntryModal"
@@ -6,17 +6,33 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 
 function App() {
+  const [isAddEntryModalOpen, setAddEntryModalOpen] = useState(false);
+  const [isViewEntryModalOpen, setViewEntryModalOpen] = useState(false);
+  const [selectedEntry, setSelectedEntry] = useState(null);
+
+  const openViewEntryModal = (entry) => {
+    setSelectedEntry(entry);
+    setViewEntryModalOpen(true);
+  };
+
+  const closeViewEntryModal = () => {
+    setSelectedEntry(null);
+    setViewEntryModalOpen(false);
+  };
+
+  const closeAddEntryModal = () => {
+    setAddEntryModalOpen(false);
+  };
 
   return (
     <>
     <Header />
     <main>
-      <AddEntryButton /> {/*This button should open the AddEntryModal when clicked, which contains the EntryForm*/}
-      <EntryList /> {/*This displays the list of EntryCard and opens ViewEntryModal when clicked, which displays EntryDetails*/}
+      <EntryList onClick={openViewEntryModal} /> {/*This displays the list of EntryCard and opens ViewEntryModal when clicked, which displays EntryDetails*/}
     </main>
     <Footer />
-    <AddEntryModal /> {/*This modal shows up based on state*/}
-    <ViewEntryModal /> {/*This modal shows up based on state*/}
+    {isAddEntryModalOpen && <AddEntryModal onClose={closeAddEntryModal} onSave={"/*here we need to add a function to save the new entry and close the modal*/"}/>}
+    {isViewEntryModalOpen && <ViewEntryModal entry={selectedEntry} onClose={closeViewEntryModal} />}
     </>
   )
 }

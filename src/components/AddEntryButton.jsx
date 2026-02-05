@@ -1,10 +1,16 @@
+
 const AddEntryButton = () => {
-  return (
-    <button
-      onClick={"*/opens the Add Entry Modal using useState()/*"}
-      className=""   
+
+     const openAddEntryModal = () => {
+    setAddEntryModalOpen(true);
+  };
+
+    return (
+        <button 
+      onClick={openAddEntryModal}
+      className="btn btn-soft btn-accent p-4 m-4 mt-10"   
     >
-    Add
+    + Add Entry
     </button>
   );
 }

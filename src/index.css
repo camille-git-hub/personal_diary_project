@@ -1,2 +1,10 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+.logo {
+    @apply w-60 h-full p-10;
+};
+
+.header {
+    @apply flex flex-col justify-center items-center text-5xl font-bold;
+};

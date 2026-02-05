@@ -1,8 +1,13 @@
+import logo from '../assets/logo.png';
+import AddEntryButton from './AddEntryButton';
+
 const Header = () => {
   return (
-    <header>
-      <h1>Personal Diary</h1>
-    </header>
+    <div className="header">
+        <img className="logo" src={logo} alt="Diary Logo" />
+        <h1>My Personal Diary</h1>
+        <AddEntryButton /> {/*This button should open the AddEntryModal when clicked, which contains the EntryForm*/}
+    </div>
   )
 }
 
