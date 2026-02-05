@@ -58,7 +58,7 @@ const EntryForm = ({ handleSubmit }) => {
   }
 
   return (
-    <div className="flex flex-col space-y-4 p-4 bg-white rounded-lg shadow-md ">
+    <div className="flex flex-col space-y-4 p-4 rounded-lg shadow-md ">
       <h2>Add New Diary Entry</h2>
       {error && <ErrorMessage error={error} onExit={() => setError(null)} />}
       <form onSubmit={checkForErrors} className="flex flex-col space-y-4">

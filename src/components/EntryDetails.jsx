@@ -9,7 +9,7 @@ const EntryDetails = (entry) => {
             Date: {entry.date}
         </label>
         <label>
-            Picture: <img src={entry.imageUrl} alt="Diary entry image" className="w-full h-auto rounded-lg" />
+            Picture: <img src={entry.imageUrl} alt="Diary entry image" className="w-64 h-64 object-cover rounded-lg" />
         </label>
         <label>
             Content: {entry.content}
