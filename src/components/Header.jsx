@@ -1,8 +1,13 @@
-const Header = () => {
+import logo from '../assets/logo.png';
+import AddEntryButton from './AddEntryButton';
+
+const Header = ({ onAddClick }) => {
   return (
-    <header>
-      <h1>Personal Diary</h1>
-    </header>
+    <div className="header">
+        <img className="logo" src={logo} alt="Diary Logo" />
+        <h1>My Personal Diary</h1>
+        <AddEntryButton onClick={onAddClick} /> {/*This button should open the AddEntryModal when clicked, which contains the EntryForm*/}
+    </div>
   )
 }
 

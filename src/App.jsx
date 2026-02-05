@@ -1,37 +1,63 @@
-import AddEntryButton from "./components/AddEntryButton"
+import { useState } from "react"
 import AddEntryModal from "./components/AddEntryModal"
 import EntryList from "./components/EntryList"
 import ViewEntryModal from "./components/ViewEntryModal"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
-
-import { useState } from 'react';
-import { loadDiaryEntries } from "./util/storage";
+import { loadDiaryEntries, saveDiaryEntries } from "./util/storage";
+import { useEffect } from "react";
 
 function App() {
-
+  const [isAddEntryModalOpen, setAddEntryModalOpen] = useState(false);
+  const [isViewEntryModalOpen, setViewEntryModalOpen] = useState(false);
+  const [selectedEntry, setSelectedEntry] = useState(null);
   const [entries, setEntries] = useState(loadDiaryEntries());
-  const [addEntry, setAddEntry]=useState(false);
 
 
-  //setAddEntry(true);
+  useEffect(() => {
+   saveDiaryEntries(entries); 
+  }, [entries]);
+
+  const openViewEntryModal = (entry) => {
+    setSelectedEntry(entry);
+    setViewEntryModalOpen(true);
+  };
+
+  const closeViewEntryModal = () => {
+    setSelectedEntry(null);
+    setViewEntryModalOpen(false);
+  };
+
+  const closeAddEntryModal = () => {
+    setAddEntryModalOpen(false);
+  };
+
+  const openAddEntryModal = () => {
+    setAddEntryModalOpen(true);
+  };
+
+  const handleNewEntry = (newEntry) => {
+    const entry= {
+      id: Date.now(),
+      ...newEntry
+    };
+    setEntries([...entries, entry]);
+    closeAddEntryModal();
+};
 
   return (
     <>
-    <Header />
-    <main>
-      <AddEntryButton setAddEntry={setAddEntry} /> {/*This button should open the AddEntryModal when clicked, which contains the EntryForm*/}
-      <EntryList entries={entries} /> {/*This displays the list of EntryCard and opens ViewEntryModal when clicked, which displays EntryDetails*/}
-    </main>
-    <Footer />
-    <AddEntryModal onDiaryAdded={handleNewEntry} onClose={() => setAddEntry(false)} isOpen={addEntry} /> {/*This modal shows up based on state*/}
-    {/* <ViewEntryModal />  This modal shows up based on state */}
+      <Header onAddClick={openAddEntryModal} />
+      <main>
+        <EntryList onClick={openViewEntryModal} entries={entries} /> {/*This displays the list of EntryCard and opens ViewEntryModal when clicked, which displays EntryDetails*/}
+      </main>
+      <Footer />
+        <AddEntryModal isOpen={isAddEntryModalOpen} onClose={closeAddEntryModal} onAddEntry={handleNewEntry}/>
+        <ViewEntryModal isOpen={isViewEntryModalOpen} onClose={closeViewEntryModal} entry={selectedEntry} /> 
     </>
-  )
 
-  function handleNewEntry(newEntry) {
-    setEntries([...entries, newEntry]); // ← Just add to existing state
-  }
+  );
 }
 
-export default App;
+
+export default App; 

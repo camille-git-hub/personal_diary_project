@@ -1,10 +1,10 @@
-const AddEntryButton = ({setAddEntry}) => {
+const AddEntryButton = ({onClick}) => {
   // "/opens the Add Entry Modal using useState()/"
   return (
-    <button onClick={() => {setAddEntry(true); console.log("bloed");}}
+    <button onClick={onClick}
       className="btn btn-primary"
     >
-    Add
+    + Add Entry
     </button>
   );
 }

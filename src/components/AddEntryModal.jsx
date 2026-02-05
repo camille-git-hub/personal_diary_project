@@ -1,32 +1,8 @@
 import EntryForm from "./EntryForm.jsx";
 
-/*
-const AddEntryModal = ({ onDiaryAdded }) => {
-  const handleSubmit = (newEntry) => {
-    console.log(`Adding to console`, newEntry);
-    onDiaryAdded(newEntry); // callback to parent to refresh the list
-  };
-
-  return (
-    <div>
-      <EntryForm handleSubmit={handleSubmit} />
-      <button>Close</button>
-    </div>
-  );
-};
-
-*/
-
-
-const AddEntryModal = ({ onDiaryAdded,  isOpen, onClose }) => {
+const AddEntryModal = ({ onAddEntry,  isOpen, onClose }) => {
 
   console.log("AddEntryModal gerendert – isOpen =", isOpen);
-
-  const handleSubmit = (newEntry) => {
-    console.log(`Adding to console`, newEntry);
-    onDiaryAdded(newEntry); // callback to parent to refresh the list
-    onClose();
-  };
 
     if (!isOpen) return null;
 
@@ -47,7 +23,7 @@ const AddEntryModal = ({ onDiaryAdded,  isOpen, onClose }) => {
             </button>
 
         <div>
-          <EntryForm handleSubmit={handleSubmit} onClose={onClose} />
+          <EntryForm onSubmit={onAddEntry} onClose={onClose} />
         </div>
         </div>
     </div>
