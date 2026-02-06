@@ -12,7 +12,7 @@ const AddEntryModal = ({ onAddEntry,  isOpen, onClose }) => {
           onClick={onClose}
         >
         <div
-            className="bg-white rounded-xl shadow-lg w-full max-w-4xl max-h-[90vh] overflow-auto"
+            className="bg-base-200 rounded-xl shadow-lg w-full max-w-4xl max-h-[90vh] overflow-auto"
             onClick={(e) => e.stopPropagation()}
         >
             <button

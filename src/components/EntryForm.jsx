@@ -78,7 +78,7 @@ const EntryForm = ({ onSubmit, onClose}) => {
 
   return (
     <div className="flex flex-col space-y-4 p-4 rounded-lg shadow-md ">
-      <h2>Add New Diary Entry</h2>
+      <h2 className="font-bold text-secondary">Add New Diary Entry</h2>
       {error && <ErrorMessage error={error} onExit={() => setError(null)} />}
       <form onSubmit={checkForErrors} className="flex flex-col space-y-4">
         <label className="flex gap-4">
@@ -95,7 +95,7 @@ const EntryForm = ({ onSubmit, onClose}) => {
           <input type="url" name="imageUrl" className="input" onChange={(e) => setImageUrl(e.target.value.trim())} />
 
         </label>
-        <label>
+        <label className="flex gap-4">
           Content:
           <textarea name="content" className="textarea textarea-bordered" onChange={(e) => setContent(e.target.value.trim())} />
         </label>
