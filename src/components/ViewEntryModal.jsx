@@ -10,12 +10,12 @@ const ViewEntryModal = ({ isOpen, onClose, entry }) => {
           onClick={onClose}
         >
         <div
-            className="bg-white rounded-xl shadow-lg w-full max-w-4xl max-h-[90vh] overflow-auto"
+            className="bg-base-200 rounded-xl shadow-lg w-full max-w-4xl max-h-[90vh] overflow-auto"
             onClick={(e) => e.stopPropagation()}
         >
             <button
             onClick={onClose}
-            className="absolute top-3 right-3 px-3 py-1.5 text-sm rounded-md border border-gray-300 hover:bg-gray-100"
+            className="absolute top-3 right-3 px-3 py-1.5 btn text-sm rounded-md border border-gray-300 hover:bg-gray-100 "
             >
                 Close
             </button>
